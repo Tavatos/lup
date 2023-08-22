@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sidebar</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+</head>
+<body>
+    <div class="container">
+
+        <!-- -------left-sidebar-------- -->
+        <div class="left-sidebar">
+            <div class="sidebar-profile-box">
+                <img src={% static "images/cover-pic.png"%} width="100%">
+                <div class="sidebar-profile-info">
+                    <img src={% static "images/user-1.png"%}>
+                    <h1>User Name</h1>
+                    <h3>subtitle/designation</h3>
+                    <ul>
+                        <li>Your Profile Views <span>29</span></li>
+                        <li>Your Post Views <span>290</span></li>
+                        <li>Your Connections <span>209</span></li>
+                    </ul>
+                </div>
+                <div class="sidebar-profile-link">
+                    <a href="#"><img src={% static "images/items.png"%} > My Items</a>
+                    <a href="#"><img src={% static "images/premium.png"%} > Try Premium</a>
+                </div>
+            </div>
+    
+            <div class="sidebar-activity" id="sidebarActivity">
+                <h3>RECENT</h3>
+                <a href="#"><img src={% static "images/recent.png"%}> Web Development</a>
+                <a href="#"><img src={% static "images/recent.png"%}> User Interface</a>
+                <a href="#"><img src={% static "images/recent.png"%}> Online Learning</a>
+                <a href="#"><img src={% static "images/recent.png"%}> Learn Online</a>
+                <a href="#"><img src={% static "images/recent.png"%}> Code Better</a>
+                <a href="#"><img src={% static "images/recent.png"%}> Group Learning</a>
+                <h3>GROUPS</h3>
+                <a href="#"><img src={% static "images/group.png"%}> Web Design Group</a>
+                <a href="#"><img src={% static "images/recent.png"%}> Group 2</a>
+                <a href="#"><img src={% static "images/recent.png"%}> Group 3</a>
+                <a href="#"><img src={% static "images/recent.png"%}> Group 4</a>
+                <h3>HASHTAG</h3>
+                <a href="#"><img src={% static "images/hashtag.png"%}> Webdevelopment</a>
+                <a href="#"><img src={% static "images/hashtag.png"%}> userinterface</a>
+                <a href="#"><img src={% static "images/hashtag.png"%}> onlinelearning</a>
+                <div class="discover-more-link">
+                    <a href="#">Discover More</a>
+                </div>
+            </div>
+            <p id="showMoreLink" onclick="toggleActivity()">Show more <b>+</b></p>
+        </div>
+
+        
+        <!-- ------right-sidebar------- -->
+
+
+
+    </div>
+
+<!-- -----------------scripts------------------- -->
+    <script>
+
+        let sidebarActivity = document.getElementById("sidebarActivity");
+        let moreLink = document.getElementById("showMoreLink");
+    
+        function toggleActivity(){
+            sidebarActivity.classList.toggle("open-activity");
+    
+            if (sidebarActivity.classList.contains("open-activity")){
+                moreLink.innerHTML = "Show Less <b>-</b>";
+            }else{
+                moreLink.innerHTML = "Show More <b>+</b>";
+            }
+        }
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    {% comment %} <link rel="stylesheet" href="style.css"> {% endcomment %}
+    <link rel="stylesheet" href= "{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- ------------------------ navbar ------------------------------ -->
+    <nav class="navbar">
+        <div class="navbar-left">
+
+            <a href="index.html" class="logo"><img src= {% static 'images/logo.png' %}></a>
+            <div class="search-box">
+                <img src={% static "images/search.png"%}>
+                <input type="text" placeholder="Search">
+            </div>
+
+        </div>
+
+        <div class="navbar-center">
+            <ul>
+                <li><a href="/" class="active-link"><img src={% static "images/home.png"%}><span>Home</span></a></li>
+                <li><a href="{% url 'profiles:entity-list' %}"><img src={% static "images/network.png" %}><span>Profiles</span></a></li>
+                <li><a href={% url 'review:review_home' %}><img src={% static "images/jobs.png"%}><span>Review</span></a></li>
+            <li><a href="#"><img src={% static "images/message.png"%}><span>Forum</span></a></li>
+                <li><a href="#"><img src={% static "images/notification.png"%}><span>Notifications</span></a></li>
+            </ul>
+        </div>
+        <div class="navbar-right">
+            <div class="online">
+                <img src={% static "images/user-1.png"%} class="nav-profile-img" onclick="toggleMenu()">
+            </div>
+            
+        </div>
+
+        <!-- ------------profile-drop-down-menu---------------- -->
+
+        <div class="profile-menu-wrap" id="profileMenu">
+            <div class="profile-menu">
+                <div class="user-info">
+                    <img src={% static "images/user-1.png"%} alt="">
+                    <div>
+                        <h3>User Name</h3>
+                        <a href="profile.html">See your profile</a>
+                    </div>
+                </div>
+                <hr>
+                <a href="#" class="profile-menu-link">
+                    <img src={% static "images/feedback.png"%} alt="">
+                    <p>Give feedback</p>
+                    <span> > </span>
+                </a>
+                <a href="#" class="profile-menu-link">
+                    <img src={% static "images/setting.png"%} alt="">
+                    <p>Settings & Privacy</p>
+                    <span> > </span>
+                </a>
+                <a href="#" class="profile-menu-link">
+                    <img src={% static "images/help.png"%} alt="">
+                    <p>Help & Support</p>
+                    <span>></span>
+                </a>
+                <a href="#" class="profile-menu-link">
+                    <img src={% static "images/display.png"%} alt="">
+                    <p>Display & Accessability</p>
+                    <span>></span>
+                </a>
+                <a href="/" class="profile-menu-link">
+                    <img src={% static "images/logout.png"%} alt="">
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
+            </div>
+        </div>
+
+    </nav>
+    <!-- -------------------------navbar end---------------------------- -->
+
+
+
+
+
+    <!-- -----------------scripts------------------- -->
+    <script>
+        // ----profile menu-------
+            let profileMenu = document.getElementById("profileMenu");
+        
+            function toggleMenu(){
+                profileMenu.classList.toggle("open-menu");
+            }
+
+    </script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,362 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Template</title>
+    <link rel="stylesheet" type="text/css" href={% static 'css/style.css' %}>
+</head>
+<body>
+    
+{% block content %}
+<div class="container">
+    
+    <!-- -------left-sidebar-------- -->
+    <div class="left-sidebar">
+        <div class="sidebar-profile-box">
+            <img src={% static "images/cover-pic.png"%} width="100%">
+            <div class="sidebar-profile-info">
+                <img src={% static "images/user-1.png"%}>
+                <h1>User Name</h1>
+                <h3>subtitle/designation</h3>
+                <ul>
+                    <li>Your Profile Views <span>29</span></li>
+                    <li>Your Post Views <span>290</span></li>
+                    <li>Your Connections <span>209</span></li>
+                </ul>
+            </div>
+            <div class="sidebar-profile-link">
+                <a href="#"><img src={% static "images/items.png"%} > My Items</a>
+                <a href="#"><img src={% static "images/premium.png"%} > Try Premium</a>
+            </div>
+        </div>
+
+        <div class="sidebar-activity" id="sidebarActivity">
+            <h3>RECENT</h3>
+            <a href="#"><img src={% static "images/recent.png"%}> Web Development</a>
+            <a href="#"><img src={% static "images/recent.png"%}> User Interface</a>
+            <a href="#"><img src={% static "images/recent.png"%}> Online Learning</a>
+            <a href="#"><img src={% static "images/recent.png"%}> Learn Online</a>
+            <a href="#"><img src={% static "images/recent.png"%}> Code Better</a>
+            <a href="#"><img src={% static "images/recent.png"%}> Group Learning</a>
+            <h3>GROUPS</h3>
+            <a href="#"><img src={% static "images/group.png"%}> Web Design Group</a>
+            <a href="#"><img src={% static "images/recent.png"%}> Group 2</a>
+            <a href="#"><img src={% static "images/recent.png"%}> Group 3</a>
+            <a href="#"><img src={% static "images/recent.png"%}> Group 4</a>
+            <h3>HASHTAG</h3>
+            <a href="#"><img src={% static "images/hashtag.png"%}> Webdevelopment</a>
+            <a href="#"><img src={% static "images/recent.png"%}> userinterface</a>
+            <a href="#"><img src={% static "images/recent.png"%}> onlinelearning</a>
+            <div class="discover-more-link">
+                <a href="#">Discover More</a>
+            </div>
+        </div>
+        <p id="showMoreLink" onclick="toggleActivity()">Show more <b>+</b></p>
+    </div>
+
+    <!-- -------main-content------ -->
+    <div class="main-content">
+       
+        <div class="create-post">
+            <div class="create-post-input">
+                <img src={% static "images/user-1.png"%}>
+                <textarea rows="2" placeholder="Write a Post"></textarea>
+            </div>
+
+            <div class="create-post-links">
+                <li><img src={% static "images/photo.png"%}>Photo</li>
+                <li><img src={% static "images/video.png"%}>Video</li>
+                <li><img src={% static "images/event.png"%}>Event</li>
+                <li>Post</li>
+            </div>
+        </div>
+
+        <div class="sort-by">
+            <hr>
+            <p>Sort by: <span>top <img src={% static "images/down-arrow.png"%}></span></p>
+        </div>
+        <!-- ------post----- -->
+        <div class="post">
+            <div class="post-author">
+                <img src={% static "images/user-3.png"%}>
+                <div>
+                    <h1>Benjamin Leo</h1>
+                    <small>Founder and CEO at Gallelio | Angel Investor</small>
+                    <small>2 hours ago</small>
+                </div>
+            </div>
+            <p>post text. a long rambling piece of gibberish to hold the space. that should eventually be pulled from the database</p>
+            <img src={% static "images/post-image-1.png"%} width="100%">
+            
+            <div class="post-stats">
+                <div>
+                    <img src={% static "images/thumbsup.png"%} >
+                    <img src={% static "images/love.png"%} >
+                    <img src={% static "images/clap.png"%} >
+                    <span class="liked-users">fan users name and 76 others</span>
+                </div>
+                <div>
+                    <span>25 comments &middot; 40 shares</span>
+                </div>
+            </div>
+
+            <div class="post-activity">
+                <div>
+                    <img src={% static "images/user-2.png"%} class="post-activity-user-icon">
+                    <img src={% static "images/down-arrow.png"%}class="post-activity-arrow-icon">
+                </div>
+                <div class="post-activity-link">
+                    <img src={% static "images/like.png"%}>
+                    <span>Like</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src={% static "images/comment.png"%}>
+                    <span>Comment</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src={% static "images/share.png"%}>
+                    <span>Share</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src={% static "images/send.png"%}>
+                    <span>Send</span>
+                </div>
+            </div>
+        </div>
+        <!-- ----- post2 ----- -->
+        <div class="post">
+            <div class="post-author">
+                <img src={% static "images/user-4.png"%}>
+                <div>
+                    <h1>betty Ford</h1>
+                    <small>Founder and CEO at Gallelio | Angel Investor</small>
+                    <small>2 hours ago</small>
+                </div>
+            </div>
+            <p>post text. a long rambling piece of gibberish to hold the space. that should eventually be pulled from the database</p>
+            <img src={% static "images/post-image-2.png"%} width="100%">
+            
+            <div class="post-stats">
+                <div>
+                    <img src={% static "images/thumbsup.png"%} >
+                    <img src={% static "images/love.png"%} >
+                    <img src={% static "images/clap.png"%}>
+                    <span class="liked-users">fan users name and 76 others</span>
+                </div>
+                <div>
+                    <span>25 comments &middot; 40 shares</span>
+                </div>
+            </div>
+
+            <div class="post-activity">
+                <div>
+                    <img src={% static "images/user-5.png"%} class="post-activity-user-icon">
+                    <img src={% static "images/down-arrow.png"%} class="post-activity-arrow-icon">
+                </div>
+                <div class="post-activity-link">
+                    <img src={% static "images/like.png"%}>
+                    <span>Like</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src={% static "images/comment.png"%}>
+                    <span>Comment</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src={% static "images/share.png"%}>
+                    <span>Share</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src={% static "images/send.png"%}>
+                    <span>Send</span>
+                </div>
+            </div>
+        </div>
+        <!-- ----- post3 ----- -->
+        <div class="post">
+            <div class="post-author">
+                <img src="images/user-5.png">
+                <div>
+                    <h1>Benjamin Leo</h1>
+                    <small>Founder and CEO at Gallelio | Angel Investor</small>
+                    <small>2 hours ago</small>
+                </div>
+            </div>
+            <p>post text. a long rambling piece of gibberish to hold the space. that should eventually be pulled from the database</p>
+            <img src="images/post-image-3.png" width="100%">
+            
+            <div class="post-stats">
+                <div>
+                    <img src="images/thumbsup.png" >
+                    <img src="images/love.png" >
+                    <img src="images/clap.png">
+                    <span class="liked-users">fan users name and 76 others</span>
+                </div>
+                <div>
+                    <span>25 comments &middot; 40 shares</span>
+                </div>
+            </div>
+
+            <div class="post-activity">
+                <div>
+                    <img src="images/user-1.png" class="post-activity-user-icon">
+                    <img src="images/down-arrow.png" class="post-activity-arrow-icon">
+                </div>
+                <div class="post-activity-link">
+                    <img src="images/like.png">
+                    <span>Like</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="images/comment.png">
+                    <span>Comment</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="images/share.png">
+                    <span>Share</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="images/send.png">
+                    <span>Send</span>
+                </div>
+            </div>
+        </div>
+        <!-- ----- post4 ----- -->
+        <div class="post">
+            <div class="post-author">
+                <img src="images/user-2.png">
+                <div>
+                    <h1>Benjamin Leo</h1>
+                    <small>Founder and CEO at Gallelio | Angel Investor</small>
+                    <small>2 hours ago</small>
+                </div>
+            </div>
+            <p>post text. a long rambling piece of gibberish to hold the space. that should eventually be pulled from the database</p>
+            <img src="images/post-image-4.png" width="100%">
+            
+            <div class="post-stats">
+                <div>
+                    <img src="images/thumbsup.png" >
+                    <img src="images/love.png" >
+                    <img src="images/clap.png">
+                    <span class="liked-users">fan users name and 76 others</span>
+                </div>
+                <div>
+                    <span>25 comments &middot; 40 shares</span>
+                </div>
+            </div>
+
+            <div class="post-activity">
+                <div>
+                    <img src="images/user-1.png" class="post-activity-user-icon">
+                    <img src="images/down-arrow.png" class="post-activity-arrow-icon">
+                </div>
+                <div class="post-activity-link">
+                    <img src="images/like.png">
+                    <span>Like</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="images/comment.png">
+                    <span>Comment</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="images/share.png">
+                    <span>Share</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="images/send.png">
+                    <span>Send</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ------right-sidebar------- -->
+    <div class="right-sidebar">
+        <div class="sidebar-news">
+            <img src={% static "images/more.png"%} class="info-icon">
+            <h3>Trending News</h3>
+            <a href="#">High Demand for skilled labour</a>
+            <span>1d ago &middot; 10,934 readers</span>
+
+            <a href="#">Link text 2</a>
+            <span>19h ago &middot; 1,934 readers</span>
+
+            <a href="#">3rd link text</a>
+            <span>12d ago &middot; 10,934 readers</span>
+
+            <a href="#">link text 4</a>
+            <span>1d ago &middot; 10,934 readers</span>
+
+            <a href="#">link text 5</a>
+            <span>1d ago &middot; 10,934 readers</span>
+
+            <a href="#" class="read-more-link">Read More</a>
+        </div>
+
+        <div class="sidebar-ad">
+            <small>Ad &middot; &middot; &middot; </small>
+            <p>Master the 5 priciples of web design</p>
+            <div>
+                <img src={% static "images/user-1.png"%}>
+                <img src={% static "images/mi-logo.png"%}>
+            </div>
+            <b>Brand and Demand in Xiaomi</b>
+            <a href="#" class="ad-link">Learn More</a>
+        </div>
+
+        <div class="sidebar-useful-links">
+            <a href="#">About</a>
+            <a href="#">Accessability</a>
+            <a href="#">Help Center</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Advertising</a>
+            <a href="#">Get the App</a>
+            <a href="#">More</a>
+
+            <div class="copyright-msg">
+                <img src={% static "images/logo.png"%}>
+                <p>Loopy &#169; 2023. All rights reserved</p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+// ----profile menu-------
+    let profileMenu = document.getElementById("profileMenu");
+
+    function toggleMenu(){
+        profileMenu.classList.toggle("open-menu");
+    }
+</script>
+<script>
+
+    let sidebarActivity = document.getElementById("sidebarActivity");
+    let moreLink = document.getElementById("showMoreLink");
+
+    function toggleActivity(){
+        sidebarActivity.classList.toggle("open-activity");
+
+        if (sidebarActivity.classList.contains("open-activity")){
+            moreLink.innerHTML = "Show Less <b>-</b>";
+        }else{
+            moreLink.innerHTML = "Show More <b>+</b>";
+        }
+    }
+
+</script>
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+		rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <title>profile {{e_profile.user.username}}</title>
+</head>
+<body>
+    <header>header</header>
+    <section>
+        <div class="container">
+            <div class="main">
+                <div class="topbar">
+                    <a href="">logout</a>
+                    <a href="./forum.html">support</a>
+                    <a href="./forum-home.html">forum</a>
+                    <a href="./index.html">Home</a>
+                </div>
+
+                <div class="row">
+                    
+                    <div class="col-md-4 mt-1">
+                        <div class="card text-center sidebar">
+                            <div class="card-body">
+                                <img src="./images/mugiwara.png" class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h3>Blak Tav</h3>
+                                    <a href="./profile.html">Home</a>
+                                    <a href="">Work</a>
+                                    <a href="">Support</a>
+                                    <a href="">Setting</a>
+                                    <a href="">Signout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 mt-1">
+                        <div class="card mb-3 content">
+                            <h1 class="m-3 pt-3">About</h1>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Full Name</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        Blak Tav
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Email</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        abc@gmail.com
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Phone</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        +27 76 476 2226
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Address</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        3802 Mokone Street, Mamelodi
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3 content">
+                            <h1 class="m-3">Recent Projects</h1>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Project Name</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        Project Description
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </section>
+
+
+    <footer>footer</footer>
+</body>
+</html>

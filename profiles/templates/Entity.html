@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entity Profile Template</title>
+    <link rel="stylesheet" type= "text/css" href="{% static 'css/style.css' %}">
+</head>
+{% block content %}
+<h1>Profiles template: {{ object.title }} </h1>
+
+<section>
+    {% comment %} <div class="container">
+        <div class="main">
+            
+            <div class="row">
+                <div class="col-md-4 mt-1">
+                    <div class="card text-center sidebar">
+                        <div class="card-body">
+                            <img src="./images/mugiwara.png" class="rounded-circle" width="150">
+                            <div class="mt-3">
+                                <h3>Blak Tav</h3>
+                                <a href="">Home</a>
+                                <a href="">Work</a>
+                                <a href="">Support</a>
+                                <a href="">Setting</a>
+                                <a href="">Signout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 mt-1">
+                    <div class="card mb-3 content">
+                        <h1 class="m-3 pt-3">About</h1>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Full Name</h5>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{ object.entity_name }} 
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Email</h5>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{ object.email }}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Phone</h5>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    +27 76 476 2226
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Address</h5>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{ object.address }}
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    {{ object.postal_code }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3 content">
+                        <h1 class="m-3">Recent Projects</h1>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Project Name</h5>
+                                </div>
+                                <div class="col-md-9 text-secondary">
+                                    Project Description
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+    <div class="container">
+        <div class="profile-main">
+            <div class="profile-container">
+                <img src={% static "images/gp-health.png"%} alt="" width="100%">
+                <div class="profile-container-inner">
+                    <img src={% static "images/hospital-logo.png"%} alt="" class="profile-pic">
+                    <h1>{{ object.entity_name }}</h1>
+                    <b>{{object.town}} </b>
+                    <p>{{object.municipality}} &middot; <a href="#">Contact Info</a></p>
+                    {% comment %} <div class="mutual-connection">
+                        <img src={% static "images/user-2.png"%} alt="">
+                        <span>1 mutual connection: Orlando Giggs</span>
+                    </div>
+                    <div class="profile-btn">
+                        <a href="#"><img src={% static "images/connect.png"%} alt="" class="primary-btn">follow</a>
+                        <a href="#"><img src={% static "images/chat.png"%} alt="">Review</a>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+            <div class="profile-description">
+                <h2>Description</h2>
+                <p> {{object.description|safe|linebreaks}} 
+                    {% comment %} Description text. Entity description including type, sector and department? a bunch of shit about how shit does dhit and maybe why shit does the shit that it does. to be replaced with form pull from database {% endcomment %}
+                </p>
+                <a href="#" class="see-more-link">See more...</a>
+            </div>
+            <div class="profile-description">
+                <h2>About</h2>
+                
+                <div class="profile-desc-row">
+                    <img src={% static "images/slack.png"%} alt="">
+                    <div>
+                        <h3>Address</h3>
+                        <b>{{object.address}}</b>
+                        <b>{{object.area}}</b>
+                        <b>{{object.town}}</b>
+                        <b>{{object.postal_code}}</b>
+                        <b>GPS Co-Ordinates: {{object.gps_coordinates}}</b>
+                        <p></p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="profile-desc-row">
+                    <img src={% static "images/google.png" %}alt="">
+                    <div>
+                        <h3>Contact Info</h3>
+                        <b>Telephone &middot; {{object.contact_no}}</b>
+                        <b>Email: &middot; {{object.email}}</b>
+                        <p>phone numbers and email addresses. recommended call times and response times?</p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="profile-desc-row">
+                    <img src={% static "images/microsoft.png"%} alt="">
+                    <div>
+                        <h3>Operating Hours</h3>
+                        <b>section &middot; day-time</b>
+                        <b>section &middot; day-time</b>
+                        <b>section &middot; day-time</b>
+                        <b>Feb 2021 - Present &middot; 1.5 years</b>
+                        <p>operating hours.</p>
+                        
+                    </div>
+                </div>
+                <hr>
+                
+            </div>
+    
+            <div class="profile-description">
+                <h2>Services</h2>
+                <div class="profile-desc-row">
+                    <img src={% static "images/stanford.png"%} alt="">
+                    <div>
+                        <h3>Primary Service</h3>
+                        <b>{{object.services|linebreaks}} &middot; additional info: pull from db</b>
+                        <b>person in charge</b>
+                        <b>contact info</b>
+                        <hr>
+                    </div>
+                </div>
+                <div class="profile-desc-row">
+                    <img src={% static "images/north.png"%} alt="">
+                    <div>
+                        <h3>Secondary Service</h3>
+                        <b>Description &middot; additional info</b>
+                        <b>person in charge</b>
+                        <b>contact info</b>
+                        <hr>
+                    </div>
+                </div>
+                <div class="profile-desc-row">
+                    <img src={% static "images/mit.png"%} alt="">
+                    <div>
+                        <h3>Tertiary service</h3>
+                        <b>Description &middot; additional info</b>
+                        <b>person in charge</b>
+                        <b>contact info</b>
+                    </div>
+                </div>
+                <hr>
+                <a href="#" class="experience-link">Show all services <img src={% static "images/right-arrow.png"%} alt=""></a>
+            </div>
+            <div class="profile-description">
+                <h2>Review</h2>
+                <p>review form.
+                    {% comment %} Review from app {% endcomment %}
+                    <br>
+                    service/department selection.
+                    rating.
+                    comment box
+                </p>
+                <form method="post" action="" class="review-form">
+                    {% csrf_token %}
+                    {{ review_form.as_p }}
+                    {% comment %} <input type=>
+                    <input type={{object.public_entity}}>
+                    <input type={{object.rating}} > <br>
+                    <input type={{object.comment}}> {% endcomment %}
+                    
+                    <button type="submit">Submit</button>
+                  </form>
+                  <br>
+                <a href="#" class="skills-btn">Leadership</a>
+                <a href="#" class="skills-btn">Web Development</a>
+                <a href="#" class="skills-btn">Development</a>
+                <a href="#" class="skills-btn">Communication</a>
+                <a href="#" class="skills-btn">Leadership</a>
+                <a href="#" class="skills-btn">Leadership</a>
+            </div>
+            <div class="profile-description" >
+                <h2>People</h2>
+                <a href="#" class="language-btn">English</a>
+                <a href="#" class="language-btn">German</a>
+                
+            </div>
+        </div>
+    
+        <!-- ----------profile sidebar------------ -->
+        <div class="profile-sidebar">
+            <div class="sidebar-ad">
+                <small>Ad &middot; &middot; &middot; </small>
+                <p>Master the 5 priciples of web design</p>
+                <div>
+                    <img src={%static "images/user-1.png"%}>
+                    <img src={% static "images/mi-logo.png"%}>
+                </div>
+                <b>Brand and Demand in Xiaomi</b>
+                <a href="#" class="ad-link">Learn More</a>
+            </div>
+    
+            <div class="sidebar-people">
+                <h3>People you may know</h3>
+                <div class="sidebar-people-row">
+                    <img src={%static "images/user-3.png"%} alt="">
+                    <div>
+                        <h2> Samantha Jones</h2>
+                        <p>Head of Marketing at AliEx</p>
+                        <a href="#">Connect</a>
+                    </div>
+                </div>
+                <div class="sidebar-people-row">
+                    <img src={% static "images/user-4.png"%} alt="">
+                    <div>
+                        <h2> Stan Jones</h2>
+                        <p>Head of Marketing at AliEx</p>
+                        <a href="#">Connect</a>
+                    </div>
+                </div>
+                <div class="sidebar-people-row">
+                    <img src={% static "images/user-5.png"%} alt="">
+                    <div>
+                        <h2> Benjamin Jones</h2>
+                        <p>Head of Marketing at AliEx</p>
+                        <a href="#">Connect</a>
+                    </div>
+                </div>
+                <div class="sidebar-people-row">
+                    <img src={% static "images/user-3.png"%} alt="">
+                    <div>
+                        <h2> Samantha Jones</h2>
+                        <p>Head of Marketing at AliEx</p>
+                        <a href="#">Connect</a>
+                    </div>
+                </div>
+                <div class="sidebar-people-row">
+                    <img src={% static "images/user-3.png"%} alt="">
+                    <div>
+                        <h2> Samantha Jones</h2>
+                        <p>Head of Marketing at AliEx</p>
+                        <a href="#">Connect</a>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

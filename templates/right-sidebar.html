@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sidebar</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+</head>
+<body>
+    <div class="container">
+
+        
+
+        
+        <!-- ------right-sidebar------- -->
+    <div class="right-sidebar">
+        <div class="sidebar-news">
+            <img src="images/more.png" class="info-icon">
+            <h3>Trending News</h3>
+            <a href="#">High Demand for skilled labour</a>
+            <span>1d ago &middot; 10,934 readers</span>
+
+            <a href="#">Link text 2</a>
+            <span>19h ago &middot; 1,934 readers</span>
+
+            <a href="#">3rd link text</a>
+            <span>12d ago &middot; 10,934 readers</span>
+
+            <a href="#">link text 4</a>
+            <span>1d ago &middot; 10,934 readers</span>
+
+            <a href="#">link text 5</a>
+            <span>1d ago &middot; 10,934 readers</span>
+
+            <a href="#" class="read-more-link">Read More</a>
+        </div>
+
+        <div class="sidebar-ad">
+            <small>Ad &middot; &middot; &middot; </small>
+            <p>Master the 5 priciples of web design</p>
+            <div>
+                <img src="images/user-1.png">
+                <img src="images/mi-logo.png">
+            </div>
+            <b>Brand and Demand in Xiaomi</b>
+            <a href="#" class="ad-link">Learn More</a>
+        </div>
+
+        <div class="sidebar-useful-links">
+            <a href="#">About</a>
+            <a href="#">Accessability</a>
+            <a href="#">Help Center</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Advertising</a>
+            <a href="#">Get the App</a>
+            <a href="#">More</a>
+
+            <div class="copyright-msg">
+                <img src="images/logo.png">
+                <p>Loopy &#169; 2023. All rights reserved</p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    </div>
+
+<!-- -----------------scripts------------------- -->
+    <script>
+
+        let sidebarActivity = document.getElementById("sidebarActivity");
+        let moreLink = document.getElementById("showMoreLink");
+    
+        function toggleActivity(){
+            sidebarActivity.classList.toggle("open-activity");
+    
+            if (sidebarActivity.classList.contains("open-activity")){
+                moreLink.innerHTML = "Show Less <b>-</b>";
+            }else{
+                moreLink.innerHTML = "Show More <b>+</b>";
+            }
+        }
+    
+    </script>
+</body>
+</html>

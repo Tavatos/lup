@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/profile.css"/>
+    
+    
+    <title>Profile</title>
+    
+</head>
+<body>
+    
+    <h1>Profile Page</h1>
+    <section>
+        <div class="container">
+            <div class="main">
+                <nav>
+                    <a href="">logout</a>
+                    <a href="">support</a>
+                    <a href="">forum</a>
+                    <a href="">Home</a>
+                </nav>
+                <div class="row">
+                    <div class="Rightside">
+                    <div class="col-md-4 mt-1">
+                        <div class="card text-center sidebar">
+                            <div class="card-body">
+                                <img src="/src/static/images/mugiwara.png" class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h3>Blak Tav</h3>
+                                    <a href="">Home</a>
+                                    <a href="">Work</a>
+                                    <a href="">Support</a>
+                                    <a href="">Setting</a>
+                                    <a href="">Signout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="main">
+                    <div class="col-md-8 mt-1">
+                        <div class="card mb-3 content">
+                            <h1 class="m-3 pt-3">About</h1>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Full Name</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        {{ object.first_name }} + {{ object.last_name }}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Email</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        {{ object.email }}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Phone</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        +27 76 476 2226
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Address</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        {{ object.address }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3 content">
+                            <h1 class="m-3">Recent Projects</h1>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Project Name</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        Project Description
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    
+    </section>
+    
+    <script src="/src/static/forum.js"></script>
+</body>
+
+</html>
