@@ -1,8 +1,6 @@
-version: '3.9'
-
 services:
   db:
-    image: postgis/postgis:15
+    image: postgres:14
     container_name: ${PROJECT_NAME:-lup}_postgres
     environment:
       POSTGRES_DB: ${DB_NAME:-lup_db}
@@ -65,8 +63,8 @@ services:
       dockerfile: Dockerfile
     container_name: ${PROJECT_NAME:-lup}_web
     command: >
-      sh -c "python src/lup/manage.py migrate &&
-             python src/lup/manage.py collectstatic --noinput &&
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
              gunicorn lup.wsgi:application --bind 0.0.0.0:8000 --workers 4 --timeout 120"
     ports:
       - "8000:8000"
@@ -98,13 +96,10 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-      elasticsearch:
-        condition: service_healthy
     volumes:
       - ./src/lup:/app
       - ./media:/app/media
       - ./staticfiles:/app/staticfiles
-      - ./logs:/app/logs
     restart: unless-stopped
     networks:
       - lup_network
@@ -135,9 +130,6 @@ services:
       - db
       - redis
       - web
-    volumes:
-      - ./src/lup:/app
-      - ./logs:/app/logs
     restart: unless-stopped
     networks:
       - lup_network
@@ -161,9 +153,6 @@ services:
       - db
       - redis
       - web
-    volumes:
-      - ./src/lup:/app
-      - ./logs:/app/logs
     restart: unless-stopped
     networks:
       - lup_network

@@ -353,7 +353,7 @@ This project is licensed under the MIT License - see LICENSE file for details.
 
 ## 👥 Team & Support
 
-- **Project Lead**: Your Team
+- **Project Lead**: Thato Chikane
 - **Documentation**: Full API docs available in `/docs`
 - **Issues**: Report bugs via GitHub Issues
 - **Security**: Report security issues privately
