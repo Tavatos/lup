@@ -1,4 +1,4 @@
-# 🌍 LUP - Local Unified Platform
+# 🌍 LUP - Local Up Platform
 
 A comprehensive Django-based platform for community engagement, service reviews, and local resource management.
 
