@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    # Overrides the default startup command so the container doesn't exit,
+    # allowing VS Code to attach to it.
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    
+    # We remove the strict health check dependency for dev so the workspace 
+    # opens even if the DB is taking a long time to initialize.
+    depends_on:
+      - db
+      - redis
+
+    volumes:
+      # Mounts the root of the repo to /workspaces/lup
+      - ..:/workspaces/lup:cached
