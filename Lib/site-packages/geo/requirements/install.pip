@@ -1,0 +1,11 @@
+django-bitfield
+django-mptt>=0.6.0
+django-separatedvaluesfield
+django-timezone-field>=1.0
+django-uuidfield>=0.4.0
+djangorestframework>=2.3.13
+lxml>=3.3.0
+pytz>=2014.1.1
+requests>=2.2.0
+south
+unicodecsv>=0.9.4
