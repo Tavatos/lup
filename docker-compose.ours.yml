@@ -1,0 +1,167 @@
+services:
+  db:
+    image: postgis/postgis:14-3.4
+    container_name: ${PROJECT_NAME:-lup}_postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-lup_db}
+      POSTGRES_USER: ${DB_USER:-lup_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secure_password_change_me}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-lup_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - lup_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: ${PROJECT_NAME:-lup}_redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - lup_network
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    container_name: ${PROJECT_NAME:-lup}_elasticsearch
+    environment:
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      xpack.security.enabled: "false"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - lup_network
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${PROJECT_NAME:-lup}_web
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn lup.wsgi:application --bind 0.0.0.0:8000 --workers 4 --timeout 120"
+    ports:
+      - "8000:8000"
+    environment:
+      DEBUG: ${DEBUG:-False}
+      SECRET_KEY: ${SECRET_KEY:-django-insecure-CHANGE-THIS-IN-PRODUCTION}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,127.0.0.1}
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+      DJANGO_SETTINGS_MODULE: lup.settings
+      DB_ENGINE: django.contrib.gis.db.backends.postgis
+      DB_NAME: ${DB_NAME:-lup_db}
+      DB_USER: ${DB_USER:-lup_user}
+      DB_PASSWORD: ${DB_PASSWORD:-secure_password_change_me}
+      DB_HOST: db
+      DB_PORT: "5432"
+      REDIS_URL: redis://redis:6379/0
+      ELASTICSEARCH_URL: http://elasticsearch:9200/
+      ELASTICSEARCH_INDEX_PREFIX: ${ELASTICSEARCH_INDEX_PREFIX:-lup}
+      SKIP_ELASTICSEARCH_SIGNALS: ${SKIP_ELASTICSEARCH_SIGNALS:-True}
+      EMAIL_BACKEND: ${EMAIL_BACKEND:-django.core.mail.backends.console.EmailBackend}
+      EMAIL_HOST: ${EMAIL_HOST:-smtp.gmail.com}
+      EMAIL_PORT: ${EMAIL_PORT:-587}
+      EMAIL_HOST_USER: ${EMAIL_HOST_USER:-}
+      EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD:-}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      SENTRY_DSN: ${SENTRY_DSN:-}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./src/lup:/app
+      - ./media:/app/media
+      - ./staticfiles:/app/staticfiles
+    restart: unless-stopped
+    networks:
+      - lup_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${PROJECT_NAME:-lup}_celery
+    command: celery -A lup worker -l ${LOG_LEVEL:-info} --concurrency=4
+    environment:
+      DEBUG: ${DEBUG:-False}
+      SECRET_KEY: ${SECRET_KEY:-django-insecure-CHANGE-THIS}
+      DB_HOST: db
+      DB_NAME: ${DB_NAME:-lup_db}
+      DB_USER: ${DB_USER:-lup_user}
+      DB_PASSWORD: ${DB_PASSWORD:-secure_password_change_me}
+      REDIS_URL: redis://redis:6379/1
+      ELASTICSEARCH_URL: http://elasticsearch:9200/
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    depends_on:
+      - db
+      - redis
+      - web
+    restart: unless-stopped
+    networks:
+      - lup_network
+
+  celery-beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${PROJECT_NAME:-lup}_celery_beat
+    command: celery -A lup beat -l ${LOG_LEVEL:-info} --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    environment:
+      DEBUG: ${DEBUG:-False}
+      SECRET_KEY: ${SECRET_KEY:-django-insecure-CHANGE-THIS}
+      DB_HOST: db
+      DB_NAME: ${DB_NAME:-lup_db}
+      DB_USER: ${DB_USER:-lup_user}
+      DB_PASSWORD: ${DB_PASSWORD:-secure_password_change_me}
+      REDIS_URL: redis://redis:6379/1
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    depends_on:
+      - db
+      - redis
+      - web
+    restart: unless-stopped
+    networks:
+      - lup_network
+
+volumes:
+  postgres_data:
+  redis_data:
+  elasticsearch_data:
+
+networks:
+  lup_network:
+    driver: bridge
