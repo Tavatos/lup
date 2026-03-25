@@ -87,7 +87,7 @@ celerybeat.pid
 .venv
 venv/
 ENV/
-lup/
+
 
 # Duplicate settings
 settingsp.py
